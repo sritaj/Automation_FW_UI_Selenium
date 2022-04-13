@@ -7,25 +7,24 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.Objects;
 
-public class Driver {
+public final class Driver {
 
     private Driver(){}
 
-    private static WebDriver webDriver;
-
     public static void initDriver(){
-        if(Objects.isNull(webDriver)){
+        if(Objects.isNull(DriverManager.getDriver())){
             ChromeOptions chromeOptions = new ChromeOptions();
             WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver(chromeOptions);
+            WebDriver webDriver = new ChromeDriver(chromeOptions);
+            DriverManager.setDriver(webDriver);
         }
     }
 
     public static void quitDriver(){
-        if(Objects.nonNull(webDriver)){
-            webDriver.quit();
-            webDriver = null;
+        if(Objects.nonNull(DriverManager.getDriver())){
+            DriverManager.getDriver().quit();
+            DriverManager.unload();
         }
-
     }
+
 }
