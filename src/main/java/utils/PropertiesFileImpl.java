@@ -30,6 +30,12 @@ public final class PropertiesFileImpl {
         }
     }
 
+    /**
+     * Method to retrieve the key value from properties file
+     *
+     * @param propertyKey - The key for which the value needs to be extracted
+     * @return value of the specified propertyKey
+     */
     public static String getDataFromPropertyFile(String propertyKey) {
         try{
             if(Objects.isNull(propertyKey) || Objects.isNull(CONFIGMAP.get(propertyKey))){

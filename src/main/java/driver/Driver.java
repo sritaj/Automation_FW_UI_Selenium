@@ -12,6 +12,9 @@ public final class Driver {
 
     public Driver(){}
 
+    /**
+     * Method to initialise WebDriver
+     */
     public static void initDriver(){
         if(Objects.isNull(DriverManager.getDriver())){
             ChromeOptions chromeOptions = new ChromeOptions();
@@ -23,6 +26,9 @@ public final class Driver {
         }
     }
 
+    /**
+     * Method to quit the WebDriver
+     */
     public static void quitDriver(){
         if(Objects.nonNull(DriverManager.getDriver())){
             DriverManager.getDriver().quit();
