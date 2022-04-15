@@ -39,7 +39,7 @@ public final class PropertiesFileImpl {
      */
     public static String getDataFromPropertyFile(ConfigProperties propertyKey) {
         try{
-            if(Objects.isNull(propertyKey) || Objects.isNull(CONFIGMAP.get(propertyKey))){
+            if(Objects.isNull(propertyKey) || Objects.isNull(CONFIGMAP.get(propertyKey.name().toLowerCase()))){
                 System.err.println("Specified Key -> '" + propertyKey + "' is not found in config properties");
             }
         }catch (NullPointerException e){
