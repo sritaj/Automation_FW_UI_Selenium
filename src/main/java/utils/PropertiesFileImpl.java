@@ -1,6 +1,7 @@
 package utils;
 
 import constants.FrameworkConstants;
+import enums.ConfigProperties;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +37,7 @@ public final class PropertiesFileImpl {
      * @param propertyKey - The key for which the value needs to be extracted
      * @return value of the specified propertyKey
      */
-    public static String getDataFromPropertyFile(String propertyKey) {
+    public static String getDataFromPropertyFile(ConfigProperties propertyKey) {
         try{
             if(Objects.isNull(propertyKey) || Objects.isNull(CONFIGMAP.get(propertyKey))){
                 System.err.println("Specified Key -> '" + propertyKey + "' is not found in config properties");
@@ -44,6 +45,6 @@ public final class PropertiesFileImpl {
         }catch (NullPointerException e){
             System.err.println("Null pointer exception" + e.getMessage());
         }
-        return CONFIGMAP.get(propertyKey);
+        return CONFIGMAP.get(propertyKey.name().toLowerCase());
     }
 }
