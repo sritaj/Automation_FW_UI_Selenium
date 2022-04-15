@@ -1,5 +1,6 @@
 package driver;
 
+import enums.ConfigProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,7 +23,7 @@ public final class Driver {
             WebDriver webDriver = new ChromeDriver(chromeOptions);
             DriverManager.setDriver(webDriver);
             DriverManager.getDriver().manage().window().maximize();
-            DriverManager.getDriver().get(PropertiesFileImpl.getDataFromPropertyFile("url"));
+            DriverManager.getDriver().get(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.URL));
         }
     }
 
