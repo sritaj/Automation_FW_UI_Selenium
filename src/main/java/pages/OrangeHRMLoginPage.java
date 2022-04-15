@@ -12,6 +12,7 @@ public final class OrangeHRMLoginPage extends BasePage {
     private final By passwordTxtBox = By.id("txtPassword");
     private final By loginButton = By.id("btnLogin");
     private final By loginPageTitle = By.id("logInPanelHeading");
+    private final By invalidCredentials = By.id("spanMessage");
 
     /**
      * Method to login to the Application
@@ -33,6 +34,24 @@ public final class OrangeHRMLoginPage extends BasePage {
      */
     public String getLoginPageTitle() {
         return elementHelper.getTitle(loginPageTitle);
+    }
+
+    /**
+     * Method to get the Invalid credentials error msg of the Login page
+     *
+     * @return String - The error message as String
+     */
+    public String getInvalidCredentialsErrorMessage() {
+        return elementHelper.getTitle(invalidCredentials);
+    }
+
+    /**
+     * Method to check if the Invalid credentials error msg is displayed
+     *
+     * @return boolean - True/False based on the Element
+     */
+    public boolean checkInvalidCredentialsErrorMessage() {
+        return elementHelper.elementIsDisplayed(invalidCredentials);
     }
 
 }
