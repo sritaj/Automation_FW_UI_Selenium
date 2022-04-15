@@ -1,6 +1,7 @@
 package regression;
 
 import base.BaseTest;
+import com.github.javafaker.Faker;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,11 +13,12 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
     private OrangeHRMLoginPageTest(){}
 
     @DataProvider
-    public Object[][] getUsername(){
+    public Object[][] getUsernameAndPassword(){
+        Faker fs = new Faker();
         return new Object[][]{
-                {"testUser", "testUser"},
-                {"testUser1", "testUser1"},
-                {"testUser2", "testUser2"}
+                {fs.name().firstName(), fs.internet().password()},
+                {fs.name().firstName(), fs.internet().password()},
+                {fs.name().firstName(), fs.internet().password()}
         };
     }
 
@@ -37,7 +39,7 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
                 .containsIgnoringCase("LOGIN Panel");
     }
 
-    @Test(testName = "Validate login with invalid credentials", dataProvider = "getUsername")
+    @Test(testName = "Validate login with invalid credentials", dataProvider = "getUsernameAndPassword")
     public void validateLoginWithInvalidCredentials(String username, String pwd){
         new OrangeHRMLoginPage().loginToHRMPortal(username, pwd);
         Boolean errorMessageIsDisplayed  = new OrangeHRMLoginPage().checkInvalidCredentialsErrorMessage();
