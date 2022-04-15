@@ -53,12 +53,22 @@ public final class ElementHelper {
     }
 
     /**
-     * Method to click on the Element using the specified locator
+     * Method to send input to the Element using the specified locator
      *
      * @param by - The locator for the specified element
      * @param input - The user input as string for the specified element
      */
     public void sendKeys(By by, String input) {
         getElement(by).sendKeys(input);
+    }
+
+    /**
+     * Method to check the Element is displayed using the specified locator
+     *
+     * @param by - The locator for the specified element
+     * @return boolean - True/False based on the element
+     */
+    public boolean elementIsDisplayed(By by){
+        return getElement(by).isDisplayed();
     }
 }
