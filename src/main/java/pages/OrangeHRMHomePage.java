@@ -15,7 +15,7 @@ public final class OrangeHRMHomePage extends BasePage {
      * @return String - The title as String
      */
     public String getDashboardTitle() {
-        return elementHelper.getTitle(dashboardMenuOption);
+        return elementHelper.getText(dashboardMenuOption, "Dashboard Title");
     }
 
     /**
@@ -24,16 +24,15 @@ public final class OrangeHRMHomePage extends BasePage {
      * @return String - The msg as String
      */
     public String getWelcomeMessage() {
-        return elementHelper.getTitle(welcomeSection);
+        return elementHelper.getText(welcomeSection, "Welcome Msg");
     }
 
     /**
      * Method to logout from the Application
-     *
      */
     public OrangeHRMLoginPage logout() {
-        elementHelper.clickElement(welcomeSection);
-        elementHelper.clickElement(logout, WaitStrategy.CLICKABLE);
+        elementHelper.clickElement(welcomeSection, "Welcome Section");
+        elementHelper.clickElement(logout, WaitStrategy.CLICKABLE, "Logout Button");
         return new OrangeHRMLoginPage();
     }
 }

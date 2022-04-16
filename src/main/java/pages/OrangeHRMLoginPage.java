@@ -21,9 +21,9 @@ public final class OrangeHRMLoginPage extends BasePage {
      * @param password - password as string
      */
     public OrangeHRMHomePage loginToHRMPortal(String username, String password) {
-        elementHelper.sendKeys(usernameTxtBox, username);
-        elementHelper.sendKeys(passwordTxtBox, password);
-        elementHelper.clickElement(loginButton);
+        elementHelper.sendKeys(usernameTxtBox, username, "username");
+        elementHelper.sendKeys(passwordTxtBox, password, "password");
+        elementHelper.clickElement(loginButton, "Login Button");
         return new OrangeHRMHomePage();
     }
 
@@ -33,7 +33,7 @@ public final class OrangeHRMLoginPage extends BasePage {
      * @return String - The title as String
      */
     public String getLoginPageTitle() {
-        return elementHelper.getTitle(loginPageTitle);
+        return elementHelper.getTitle(loginPageTitle, "Login Page");
     }
 
     /**
@@ -42,7 +42,7 @@ public final class OrangeHRMLoginPage extends BasePage {
      * @return String - The error message as String
      */
     public String getInvalidCredentialsErrorMessage() {
-        return elementHelper.getTitle(invalidCredentials);
+        return elementHelper.getText(invalidCredentials, "Invalid Credentials");
     }
 
     /**
