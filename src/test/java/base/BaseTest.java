@@ -1,10 +1,12 @@
 package base;
 
 import driver.Driver;
+import enums.ConfigProperties;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import reports.ExtentReportImpl;
+import utils.PropertiesFileImpl;
 
 import java.lang.reflect.Method;
 
@@ -36,15 +38,15 @@ public class BaseTest {
 
         if (ITestResult.FAILURE == result.getStatus()) {
             String testName = result.getName();
-            ExtentReportImpl.failTest(testName);
+            ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL));
 
         } else if (ITestResult.SUCCESS == result.getStatus()) {
             String testName = result.getName();
-            ExtentReportImpl.passTest(testName);
+            ExtentReportImpl.passTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONPASS));
 
         } else if (ITestResult.SKIP == result.getStatus()) {
             String testName = result.getName();
-            ExtentReportImpl.skipTest(testName);
+            ExtentReportImpl.skipTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONSKIP));
         }
         Driver.quitDriver();
     }
