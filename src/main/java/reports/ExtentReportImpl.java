@@ -1,14 +1,17 @@
 package reports;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import constants.FrameworkConstants;
+import org.testng.annotations.Test;
 import utils.TakeScreenshotImpl;
 
+import java.lang.reflect.Method;
 import java.util.Objects;
 
 public final class ExtentReportImpl {
@@ -30,8 +33,11 @@ public final class ExtentReportImpl {
             spark = new ExtentSparkReporter(FrameworkConstants.getExtentReportPath() + "AutomationReport.html");
             spark.config().setTheme(Theme.DARK);
             spark.config().setDocumentTitle("AutomationReport");
-            spark.config().setReportName("Selenium UI Automation`");
+            spark.config().setReportName("Selenium UI Automation");
             extent.attachReporter(spark);
+            extent.setSystemInfo("OS", System.getProperty("os.name"));
+            extent.setSystemInfo("OS Version", System.getProperty("os.version"));
+            extent.setSystemInfo("Java Version", System.getProperty("java.runtime.version"));
         }
     }
 
@@ -84,16 +90,28 @@ public final class ExtentReportImpl {
      *
      * @param testName             - Test Name to append to info
      * @param screenshotIsRequired - specifiying if screenshot is required or not
+     * @param failureInfo          - Failure Info from TestNG
      */
-    public static void failTest(String testName, String screenshotIsRequired) {
+    public static void failTest(String testName, String screenshotIsRequired, String failureInfo) {
         String failText = "<b>" + testInfo + testName + " FAILED" + "</b>";
         m = MarkupHelper.createLabel(failText, ExtentColor.RED);
         if (screenshotIsRequired.equalsIgnoreCase("yes")) {
             ExtentReportManager.getTest().fail(m).addScreenCaptureFromBase64String(TakeScreenshotImpl.takeScreenshotAsBase64());
+            logSteps(failureInfo);
         } else {
             ExtentReportManager.getTest().fail(m);
+            logSteps(failureInfo);
         }
 
+    }
+
+    /**
+     * Method to log the steps
+     *
+     * @param record - Pass the steps info
+     */
+    public static void logSteps(String record) {
+        ExtentReportManager.getTest().info(record);
     }
 
     /**
