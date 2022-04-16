@@ -1,7 +1,9 @@
 package regression;
 
+import annotations.CustomFrameworkAnnotations;
 import base.BaseTest;
 import com.github.javafaker.Faker;
+import enums.TestCaseType;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,7 +24,8 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
         };
     }
 
-    @Test(testName = "Validate login to the OrangeHRM")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION, testCaseModule = "Login")
+    @Test(testName = "Validate login to the OrangeHRM", groups = {"regression"})
     public void validateLogin(){
         String welcomeText = new OrangeHRMLoginPage().loginToHRMPortal("Admin", "admin123").getWelcomeMessage();
         Assertions.assertThat(welcomeText)
@@ -30,7 +33,8 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
 
     }
 
-    @Test(testName = "Valdate login-logout operation in the OrangeHRM")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E, testCaseModule = "Login")
+    @Test(testName = "Valdate login-logout operation in the OrangeHRM", groups = {"regression"})
     public void validateLoginLogoutOperation(){
         new OrangeHRMLoginPage().loginToHRMPortal("Admin   ", "admin123").getWelcomeMessage();
 
@@ -39,7 +43,8 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
                 .containsIgnoringCase("LOGIN Panel");
     }
 
-    @Test(testName = "Validate login with invalid credentials", dataProvider = "getUsernameAndPassword")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.FUNCTIONAL, testCaseModule = "Login")
+    @Test(testName = "Validate login with invalid credentials", dataProvider = "getUsernameAndPassword", groups = {"regression"})
     public void validateLoginWithInvalidCredentials(String username, String pwd){
         new OrangeHRMLoginPage().loginToHRMPortal(username, pwd);
         Boolean errorMessageIsDisplayed  = new OrangeHRMLoginPage().checkInvalidCredentialsErrorMessage();
