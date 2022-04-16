@@ -9,6 +9,9 @@ import reports.ExtentReportImpl;
 
 import java.util.List;
 
+/**
+ * ElementHelper class to create wrappers for WebElement methods with Logging and relevant operations
+ */
 public final class ElementHelper {
 
     private WebDriver driver;
@@ -121,7 +124,7 @@ public final class ElementHelper {
      * @param by - The locator for the specified element
      * @return List - WebElements as list
      */
-    public List<WebElement> getElements(By by){
+    public List<WebElement> getElements(By by) {
         return driver.findElements(by);
     }
 

@@ -10,14 +10,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+/**
+ * WaitHelper class to create wrappers for Web Driver wait methods
+ */
 public final class WaitHelper {
 
-    private WaitHelper(){}
+    private WaitHelper() {
+    }
 
     /**
      * Method to perform Explicit Wait on the specified Web element
      *
-     * @param by - The locator for the specified element
+     * @param by       - The locator for the specified element
      * @param waitType - The WaitType Enum required for the specified operation
      */
     public static WebElement performExplictiWait(WaitStrategy waitType, By by) {

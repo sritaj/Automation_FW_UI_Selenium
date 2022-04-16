@@ -3,6 +3,9 @@ package pages;
 import enums.WaitStrategy;
 import org.openqa.selenium.By;
 
+/**
+ * OrangeHRMHomePage class to initialize locators and relevant methods for operations on Home Page
+ */
 public final class OrangeHRMHomePage extends BasePage {
 
     private final By dashboardMenuOption = By.id("menu_dashboard_index");

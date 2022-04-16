@@ -2,6 +2,9 @@ package pages;
 
 import org.openqa.selenium.By;
 
+/**
+ * OrangeHRMLoginPage class to initialize locators and relevant methods for operations on Login Page
+ */
 public final class OrangeHRMLoginPage extends BasePage {
 
     public OrangeHRMLoginPage() {

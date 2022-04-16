@@ -6,6 +6,9 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 import utils.PropertiesFileImpl;
 
+/**
+ * RetryAnalyzer class to implement Retry runs for failed Tests
+ */
 public final class RetryAnalyzer implements IRetryAnalyzer {
 
     private int retryCount = 0;

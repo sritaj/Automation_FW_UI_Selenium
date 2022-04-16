@@ -1,5 +1,6 @@
 package reports;
 
+import annotations.CustomFrameworkAnnotations;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
@@ -7,13 +8,15 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import constants.FrameworkConstants;
-import annotations.CustomFrameworkAnnotations;
 import org.testng.annotations.Test;
 import utils.TakeScreenshotImpl;
 
 import java.lang.reflect.Method;
 import java.util.Objects;
 
+/**
+ * ExtentReportImpl class to implement Extent Report initialisation, teardown, and relevant methods
+ */
 public final class ExtentReportImpl {
 
     private static ExtentReports extent;
@@ -139,7 +142,7 @@ public final class ExtentReportImpl {
      *
      * @param method - Java Reflection method to access the method/test to retrieve details
      */
-    public static void addDetails(Method method){
+    public static void addDetails(Method method) {
         ExtentReportManager.getTest()
                 .assignCategory(method.getAnnotation(Test.class).groups())
                 .assignCategory(method.getAnnotation(Test.class).suiteName())

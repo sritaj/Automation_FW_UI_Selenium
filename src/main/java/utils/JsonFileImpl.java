@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * JsonFileImpl class to load Jsonfile and method to read specified key value from it
+ */
 public final class JsonFileImpl {
 
     private JsonFileImpl() {
@@ -19,7 +22,7 @@ public final class JsonFileImpl {
 
     static {
         try {
-            jsonMap = new ObjectMapper().readValue(new File(FrameworkConstants.getJsonDataFilePath()),
+            jsonMap = new ObjectMapper().readValue(new File(FrameworkConstants.getJsonConfigFilePath()),
                     new TypeReference<HashMap<String, Object>>() {
                     });
         } catch (IOException e) {

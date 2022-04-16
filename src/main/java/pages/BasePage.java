@@ -4,6 +4,9 @@ import driver.DriverManager;
 import helpers.ElementHelper;
 import org.openqa.selenium.WebDriver;
 
+/**
+ * BasePage class to setup constructor for relevant classes that can be extended and utilized by revelant POM pages
+ */
 public class BasePage {
 
     protected WebDriver driver;

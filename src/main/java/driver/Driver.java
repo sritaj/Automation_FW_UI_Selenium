@@ -9,15 +9,19 @@ import utils.PropertiesFileImpl;
 
 import java.util.Objects;
 
+/**
+ * Driver class to implement WebDriver initialisation and teardown
+ */
 public final class Driver {
 
-    public Driver(){}
+    public Driver() {
+    }
 
     /**
      * Method to initialise WebDriver
      */
-    public static void initDriver(){
-        if(Objects.isNull(DriverManager.getDriver())){
+    public static void initDriver() {
+        if (Objects.isNull(DriverManager.getDriver())) {
             ChromeOptions chromeOptions = new ChromeOptions();
             WebDriverManager.chromedriver().setup();
             WebDriver webDriver = new ChromeDriver(chromeOptions);
@@ -30,8 +34,8 @@ public final class Driver {
     /**
      * Method to quit the WebDriver
      */
-    public static void quitDriver(){
-        if(Objects.nonNull(DriverManager.getDriver())){
+    public static void quitDriver() {
+        if (Objects.nonNull(DriverManager.getDriver())) {
             DriverManager.getDriver().quit();
             DriverManager.unload();
         }

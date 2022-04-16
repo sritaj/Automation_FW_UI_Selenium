@@ -4,9 +4,13 @@ import driver.DriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+/**
+ * TakeScreenshotImpl class to take Base64 images to be appended to Extent Report
+ */
 public final class TakeScreenshotImpl {
 
-    private TakeScreenshotImpl(){}
+    private TakeScreenshotImpl() {
+    }
 
     /**
      * Method to take Screenshot

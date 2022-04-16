@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Properties;
 
+/**
+ * PropertiesFileImpl class to load PropertiesFile and method to read specified key value from it
+ */
 public final class PropertiesFileImpl {
 
     private PropertiesFileImpl() {
@@ -38,11 +41,11 @@ public final class PropertiesFileImpl {
      * @return value of the specified propertyKey
      */
     public static String getDataFromPropertyFile(ConfigProperties propertyKey) {
-        try{
-            if(Objects.isNull(propertyKey) || Objects.isNull(CONFIGMAP.get(propertyKey.name().toLowerCase()))){
+        try {
+            if (Objects.isNull(propertyKey) || Objects.isNull(CONFIGMAP.get(propertyKey.name().toLowerCase()))) {
                 System.err.println("Specified Key -> '" + propertyKey + "' is not found in config properties");
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.err.println("Null pointer exception" + e.getMessage());
         }
         return CONFIGMAP.get(propertyKey.name().toLowerCase());
