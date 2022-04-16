@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import reports.ExtentReportImpl;
 
+import java.util.List;
+
 public final class ElementHelper {
 
     private WebDriver driver;
@@ -92,4 +94,35 @@ public final class ElementHelper {
     public boolean elementIsDisplayed(By by) {
         return getElement(by).isDisplayed();
     }
+
+    /**
+     * Method to check the Element is enabled using the specified locator
+     *
+     * @param by - The locator for the specified element
+     * @return boolean - True/False based on the element
+     */
+    public boolean elementIsEnabled(By by) {
+        return getElement(by).isEnabled();
+    }
+
+    /**
+     * Method to check the Element is selected using the specified locator
+     *
+     * @param by - The locator for the specified element
+     * @return boolean - True/False based on the element
+     */
+    public boolean elementIsSelected(By by) {
+        return getElement(by).isSelected();
+    }
+
+    /**
+     * Method to get the list of WebElements using the specified locator
+     *
+     * @param by - The locator for the specified element
+     * @return List - WebElements as list
+     */
+    public List<WebElement> getElements(By by){
+        return driver.findElements(by);
+    }
+
 }
