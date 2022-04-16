@@ -8,10 +8,8 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import constants.FrameworkConstants;
-import org.testng.annotations.Test;
 import utils.TakeScreenshotImpl;
 
-import java.lang.reflect.Method;
 import java.util.Objects;
 
 public final class ExtentReportImpl {
@@ -91,13 +89,15 @@ public final class ExtentReportImpl {
      * @param testName             - Test Name to append to info
      * @param screenshotIsRequired - specifiying if screenshot is required or not
      * @param failureInfo          - Failure Info from TestNG
+     * @param throwableInfo        - Errors/Exceptions info
      */
-    public static void failTest(String testName, String screenshotIsRequired, String failureInfo) {
+    public static void failTest(String testName, String screenshotIsRequired, String failureInfo, Throwable throwableInfo) {
         String failText = "<b>" + testInfo + testName + " FAILED" + "</b>";
         m = MarkupHelper.createLabel(failText, ExtentColor.RED);
         if (screenshotIsRequired.equalsIgnoreCase("yes")) {
             ExtentReportManager.getTest().fail(m).addScreenCaptureFromBase64String(TakeScreenshotImpl.takeScreenshotAsBase64());
             logSteps(failureInfo);
+            logFailureInfo(throwableInfo);
         } else {
             ExtentReportManager.getTest().fail(m);
             logSteps(failureInfo);
@@ -112,6 +112,15 @@ public final class ExtentReportImpl {
      */
     public static void logSteps(String record) {
         ExtentReportManager.getTest().info(record);
+    }
+
+    /**
+     * Method to get the failure info for Failed Test Cases
+     *
+     * @param throwable - Pass the failure info
+     */
+    public static void logFailureInfo(Throwable throwable) {
+        ExtentReportManager.getTest().fail(throwable);
     }
 
     /**
