@@ -2,7 +2,9 @@ package base;
 
 import driver.Driver;
 import enums.ConfigProperties;
+import listeners.RetryAnalyzer;
 import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import reports.ExtentReportImpl;
@@ -20,6 +22,11 @@ public class BaseTest {
 
         // Extent Report Initialization
         ExtentReportImpl.initializeReport();
+
+        //Initializing Tests with Retry Analyzer Annotation
+        for(ITestNGMethod method : context.getAllTestMethods()){
+            method.setRetryAnalyzerClass(RetryAnalyzer.class);
+        }
     }
 
     @BeforeMethod
@@ -34,11 +41,14 @@ public class BaseTest {
         Driver.initDriver();
     }
 
-    @AfterMethod
+    @AfterMethod()
     protected void tearDown(ITestResult result, Method method) {
         String testName = result.getName();
         ExtentReportImpl.logSteps(result.getName() + " -> Execution ended");
+
         if (ITestResult.FAILURE == result.getStatus()) {
+            RetryAnalyzer rerun = new RetryAnalyzer();
+            rerun.retry(result);
             ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL), result.getThrowable().getMessage(), result.getThrowable());
 
         } else if (ITestResult.SUCCESS == result.getStatus()) {
