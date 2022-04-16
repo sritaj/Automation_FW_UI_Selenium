@@ -39,7 +39,7 @@ public class BaseTest {
         String testName = result.getName();
         ExtentReportImpl.logSteps(result.getName() + " -> Execution ended");
         if (ITestResult.FAILURE == result.getStatus()) {
-            ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL), result.getThrowable().getMessage());
+            ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL), result.getThrowable().getMessage(), result.getThrowable());
 
         } else if (ITestResult.SUCCESS == result.getStatus()) {
             ExtentReportImpl.passTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONPASS));
