@@ -29,23 +29,22 @@ public class BaseTest {
         String testDescription = method.getAnnotation(Test.class).testName();
         String testName = method.getName();
         ExtentReportImpl.startTestExecution(testDescription, testName);
+        ExtentReportImpl.logSteps(testName + " -> Execution starts");
 
         Driver.initDriver();
     }
 
     @AfterMethod
     protected void tearDown(ITestResult result, Method method) {
-
+        String testName = result.getName();
+        ExtentReportImpl.logSteps(result.getName() + " -> Execution ended");
         if (ITestResult.FAILURE == result.getStatus()) {
-            String testName = result.getName();
-            ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL));
+            ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL), result.getThrowable().getMessage());
 
         } else if (ITestResult.SUCCESS == result.getStatus()) {
-            String testName = result.getName();
             ExtentReportImpl.passTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONPASS));
 
         } else if (ITestResult.SKIP == result.getStatus()) {
-            String testName = result.getName();
             ExtentReportImpl.skipTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONSKIP));
         }
         Driver.quitDriver();
