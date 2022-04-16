@@ -1,5 +1,11 @@
 package constants;
 
+import enums.ConfigProperties;
+import utils.PropertiesFileImpl;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public final class FrameworkConstants {
 
     private FrameworkConstants(){}
@@ -20,6 +26,11 @@ public final class FrameworkConstants {
         return JSONTESTDATAFILEPATH;
     }
 
-    public static String getExtentReportPath() {return  EXTENTREPORTPATH; }
+    public static String getExtentReportPath() {
+        if (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.OVERRIDEREPORTS).equalsIgnoreCase("yes")) {
+            return EXTENTREPORTPATH;
+        }
+        return EXTENTREPORTPATH + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")) + "/";
+    }
 
 }
