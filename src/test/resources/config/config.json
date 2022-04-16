@@ -1,3 +1,7 @@
 {
-  "url" : "https://opensource-demo.orangehrmlive.com/"
+  "url" : "https://opensource-demo.orangehrmlive.com/",
+  "screenshotonpass" : "no",
+  "screenshotonfail" : "yes",
+  "screenshotonskip" : "no",
+  "overridereports" : "no"
 }
