@@ -3,5 +3,6 @@
   "screenshotonpass" : "no",
   "screenshotonfail" : "yes",
   "screenshotonskip" : "no",
-  "overridereports" : "no"
+  "overridereports" : "no",
+  "retryfailedtest" : "yes"
 }
