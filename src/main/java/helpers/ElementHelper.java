@@ -79,7 +79,7 @@ public final class ElementHelper {
      * @param input       - The user input as string for the specified element
      */
     public void sendKeys(By by, String input, String elementInfo) {
-        ExtentReportImpl.logSteps("Send input " + input + " to : " + elementInfo);
+        ExtentReportImpl.logSteps("Send input '" + input + "' to : " + elementInfo);
         getElement(by).sendKeys(input);
     }
 
