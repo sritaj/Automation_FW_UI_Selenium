@@ -17,7 +17,7 @@ public class BaseTest {
     protected BaseTest() {
     }
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void beforeSuite(ITestContext context) {
 
         // Extent Report Initialization
@@ -29,7 +29,7 @@ public class BaseTest {
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     protected void setUp(Method method) {
 
         // Extent Report Initialization
@@ -41,10 +41,11 @@ public class BaseTest {
         Driver.initDriver();
     }
 
-    @AfterMethod()
+    @AfterMethod(alwaysRun = true)
     protected void tearDown(ITestResult result, Method method) {
         String testName = result.getName();
         ExtentReportImpl.logSteps(result.getName() + " -> Execution ended");
+        ExtentReportImpl.addDetails(method);
 
         if (ITestResult.FAILURE == result.getStatus()) {
             RetryAnalyzer rerun = new RetryAnalyzer();
@@ -60,7 +61,7 @@ public class BaseTest {
         Driver.quitDriver();
     }
 
-    @AfterSuite()
+    @AfterSuite(alwaysRun = true)
     public void afterSuite() {
         ExtentReportImpl.flushReports();
     }
