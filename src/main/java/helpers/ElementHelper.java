@@ -5,6 +5,7 @@ import enums.WaitStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import reports.ExtentReportImpl;
 
 public final class ElementHelper {
 
@@ -26,39 +27,59 @@ public final class ElementHelper {
     /**
      * Method to click on the Element using the specified locator
      *
-     * @param by - The locator for the specified element
+     * @param by          - The locator for the specified element
+     * @param elementInfo - Element which is clicked
      */
-    public void clickElement(By by) {
+    public void clickElement(By by, String elementInfo) {
         getElement(by).click();
+        ExtentReportImpl.logSteps("Element clicked : " + elementInfo);
     }
 
     /**
      * Method to get the Element using the specified locator
      *
-     * @param by - The locator for the specified element
-     * @param waitType - The WaitType Enum required
+     * @param by          - The locator for the specified element
+     * @param waitType    - The WaitType Enum required
+     * @param elementInfo - Element which is clicked
      */
-    public void clickElement(By by, WaitStrategy waitType) {
+    public void clickElement(By by, WaitStrategy waitType, String elementInfo) {
         WaitHelper.performExplictiWait(waitType, by).click();
+        ExtentReportImpl.logSteps("Element clicked : " + elementInfo);
     }
 
     /**
-     * Method to click on the Element using the specified locator
+     * Method to get Title for specified page
      *
-     * @param by - The locator for the specified element
+     * @param by          - The locator for the specified element
+     * @param elementInfo - Element which is clicked
      * @return String - The title of the specified element
      */
-    public String getTitle(By by) {
+    public String getTitle(By by, String elementInfo) {
+        ExtentReportImpl.logSteps("Get title for : " + elementInfo);
+        return driver.getTitle();
+    }
+
+    /**
+     * Method to get Text for the specified element
+     *
+     * @param by          - The locator for the specified element
+     * @param elementInfo - Element which is clicked
+     * @return String - The title of the specified element
+     */
+    public String getText(By by, String elementInfo) {
+        ExtentReportImpl.logSteps("Get text for : " + elementInfo);
         return getElement(by).getText();
     }
 
     /**
      * Method to send input to the Element using the specified locator
      *
-     * @param by - The locator for the specified element
-     * @param input - The user input as string for the specified element
+     * @param by          - The locator for the specified element
+     * @param elementInfo - Element which is clicked
+     * @param input       - The user input as string for the specified element
      */
-    public void sendKeys(By by, String input) {
+    public void sendKeys(By by, String input, String elementInfo) {
+        ExtentReportImpl.logSteps("Send input " + input + " to : " + elementInfo);
         getElement(by).sendKeys(input);
     }
 
@@ -68,7 +89,7 @@ public final class ElementHelper {
      * @param by - The locator for the specified element
      * @return boolean - True/False based on the element
      */
-    public boolean elementIsDisplayed(By by){
+    public boolean elementIsDisplayed(By by) {
         return getElement(by).isDisplayed();
     }
 }
