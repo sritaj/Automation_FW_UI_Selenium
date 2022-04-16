@@ -12,6 +12,11 @@ public final class RetryAnalyzer implements IRetryAnalyzer {
 
     private final int maxAttempt = FrameworkConstants.getRetryCounts();
 
+    /**
+     * IRetryAnalyzer Overriden Method to check for Retry count and rerun test cases accordingly
+     *
+     * @param result - ITestResult
+     */
     @Override
     public boolean retry(ITestResult result) {
         if ((PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RETRYFAILEDTEST).equalsIgnoreCase("yes"))
