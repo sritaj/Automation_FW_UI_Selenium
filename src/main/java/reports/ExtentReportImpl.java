@@ -114,6 +114,7 @@ public final class ExtentReportImpl {
         } else {
             ExtentReportManager.getTest().fail(m);
             logSteps(failureInfo);
+            logFailureInfo(throwableInfo);
         }
 
     }
