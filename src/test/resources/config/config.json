@@ -4,5 +4,8 @@
   "screenshotonfail" : "yes",
   "screenshotonskip" : "no",
   "overridereports" : "no",
-  "retryfailedtest" : "yes"
+  "retryfailedtest" : "no",
+  "runmode": "remote",
+  "browser": "chrome",
+  "huburl": "http://localhost:4444/wd/hub"
 }
