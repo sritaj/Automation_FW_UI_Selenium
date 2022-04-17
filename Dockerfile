@@ -16,7 +16,7 @@ ADD target/libs                                 libs
 ADD xml-suites/*                                /usr/share/tag/
 
 #copy if any other dependencies are there like test-data files, properties files
-ADD src/test/resources/config/*                 src/test/resources/properties/config
+ADD src/test/resources/config/*                 src/test/resources/properties/config/
 
 #Overriding JShell to Bash
 CMD ["bash"]
