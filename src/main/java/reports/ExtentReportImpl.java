@@ -8,7 +8,9 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import constants.FrameworkConstants;
+import enums.ConfigProperties;
 import org.testng.annotations.Test;
+import utils.PropertiesFileImpl;
 import utils.TakeScreenshotImpl;
 
 import java.lang.reflect.Method;
@@ -41,6 +43,12 @@ public final class ExtentReportImpl {
             extent.setSystemInfo("OS", System.getProperty("os.name"));
             extent.setSystemInfo("OS Version", System.getProperty("os.version"));
             extent.setSystemInfo("Java Version", System.getProperty("java.runtime.version"));
+            if(System.getProperty("BROWSER")==null){
+                extent.setSystemInfo("Browser", PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.BROWSER));
+            }else{
+                extent.setSystemInfo("Browser",System.getProperty("BROWSER"));
+            }
+
         }
     }
 
