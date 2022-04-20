@@ -13,5 +13,6 @@ public enum ConfigProperties {
     RETRYFAILEDTEST,
     RUNMODE,
     BROWSER,
-    HUBURL
+    HUBURL,
+    WRITETOEKL
 }
