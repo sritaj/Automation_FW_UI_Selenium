@@ -7,5 +7,6 @@
   "retryfailedtest" : "no",
   "runmode": "remote",
   "browser": "chrome",
-  "huburl": "http://localhost:4444/wd/hub"
+  "huburl": "http://localhost:4444/wd/hub",
+  "writetoekl": "yes"
 }
