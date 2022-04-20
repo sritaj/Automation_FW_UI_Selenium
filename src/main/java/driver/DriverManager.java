@@ -2,6 +2,8 @@ package driver;
 
 import org.openqa.selenium.WebDriver;
 
+import java.util.Objects;
+
 /**
  * DriverManager class to implement Thread Safety for WebDriver for parallel executions
  */
@@ -16,11 +18,12 @@ public final class DriverManager {
         return driver.get();
     }
 
-    public static void setDriver(WebDriver driverref) {
-        driver.set(driverref);
+    static void setDriver(WebDriver driverref) {
+        if (Objects.nonNull(driverref))
+            driver.set(driverref);
     }
 
-    public static void unload() {
+    static void unload() {
         driver.remove();
     }
 
