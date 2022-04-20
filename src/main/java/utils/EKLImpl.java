@@ -1,5 +1,6 @@
 package utils;
 
+import enums.ConfigProperties;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -37,8 +38,10 @@ public final class EKLImpl {
      *
      */
     public static void clearPreviousELKResults() {
-        RequestSpecification specs = setRequestSpec();
-        given(specs).delete();
+        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).equalsIgnoreCase("yes")){
+            RequestSpecification specs = setRequestSpec();
+            given(specs).delete();
+        }
     }
 
     /**
@@ -48,18 +51,20 @@ public final class EKLImpl {
      * @param status - Test Status
      */
     public static void sendResultsToELK(String testName, String status) {
-        Map<String, String> map = new HashMap<>();
-        map.put("testName", testName);
-        map.put("status", status);
+        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).equalsIgnoreCase("yes")){
+            Map<String, String> map = new HashMap<>();
+            map.put("testName", testName);
+            map.put("status", status);
 
-        RequestSpecification specs = setRequestSpec();
-        Response response = given(specs).contentType(ContentType.JSON)
-                .log().all()
-                .body(map)
-                .post("/_doc");
+            RequestSpecification specs = setRequestSpec();
+            Response response = given(specs).contentType(ContentType.JSON)
+                    .log().all()
+                    .body(map)
+                    .post("/_doc");
 
-        response.then().statusCode(201);
-        response.prettyPrint();
+            response.then().statusCode(201);
+            response.prettyPrint();
+        }
     }
 
 }

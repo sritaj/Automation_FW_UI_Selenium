@@ -30,9 +30,7 @@ public class BaseTest {
         }
 
         //Clearing the EKS schema for older results, if ESKSetup is set to yes
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).equalsIgnoreCase("yes")){
-            EKLImpl.clearPreviousELKResults();
-        }
+        EKLImpl.clearPreviousELKResults();
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -57,21 +55,15 @@ public class BaseTest {
             RetryAnalyzer rerun = new RetryAnalyzer();
             rerun.retry(result);
             ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL), result.getThrowable().getMessage(), result.getThrowable());
-            if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).equalsIgnoreCase("yes")){
-                EKLImpl.sendResultsToELK(result.getName(), "FAIL");
-            }
+            EKLImpl.sendResultsToELK(result.getName(), "FAIL");
 
         } else if (ITestResult.SUCCESS == result.getStatus()) {
             ExtentReportImpl.passTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONPASS));
-            if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).equalsIgnoreCase("yes")){
-                EKLImpl.sendResultsToELK(result.getName(), "PASS");
-            }
+            EKLImpl.sendResultsToELK(result.getName(), "PASS");
 
         } else if (ITestResult.SKIP == result.getStatus()) {
             ExtentReportImpl.skipTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONSKIP));
-            if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).equalsIgnoreCase("yes")){
-                EKLImpl.sendResultsToELK(result.getName(), "SKIP");
-            }
+            EKLImpl.sendResultsToELK(result.getName(), "SKIP");
         }
         Driver.quitDriver();
     }
