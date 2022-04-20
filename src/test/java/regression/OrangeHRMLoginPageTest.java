@@ -43,7 +43,9 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
 
         String loginPageTitle = new OrangeHRMHomePage().logout().getLoginPageTitle();
         Assertions.assertThat(loginPageTitle)
-                .containsIgnoringCase("LOGIN Panel");
+                .as("Object is Null").isNotNull()
+                .as("It doesn't contain expected text").containsIgnoringCase("LOGIN Panel");
+
     }
 
     @CustomFrameworkAnnotations(testCaseType = TestCaseType.FUNCTIONAL, testCaseModule = "Login")
