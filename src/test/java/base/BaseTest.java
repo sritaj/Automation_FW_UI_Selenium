@@ -1,5 +1,6 @@
 package base;
 
+import constants.FrameworkConstants;
 import driver.Driver;
 import enums.ConfigProperties;
 import listeners.RetryAnalyzer;
@@ -10,13 +11,19 @@ import org.testng.annotations.*;
 import reports.ExtentReportImpl;
 import utils.EKLImpl;
 import utils.PropertiesFileImpl;
+import utils.TakeVideoImpl;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class BaseTest {
 
     protected BaseTest() {
     }
+
+    TakeVideoImpl captureVideo;
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(ITestContext context) {
@@ -31,6 +38,16 @@ public class BaseTest {
 
         //Clearing the EKS schema for older results, if ESKSetup is set to yes
         EKLImpl.clearPreviousELKResults();
+
+        //Initializing object for taking Screen Recording
+        try {
+            captureVideo = new TakeVideoImpl(new File(FrameworkConstants.getScreenRecordingPath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -43,6 +60,9 @@ public class BaseTest {
         ExtentReportImpl.logSteps(testName + " -> Execution starts");
 
         Driver.initDriver();
+
+        // Starting the Screen Recording
+        captureVideo.startRecording(method.getName(), true);
     }
 
     @AfterMethod(alwaysRun = true)
@@ -56,6 +76,7 @@ public class BaseTest {
             rerun.retry(result);
             ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL), result.getThrowable().getMessage(), result.getThrowable());
             EKLImpl.sendResultsToELK(result.getName(), "FAIL");
+            captureVideo.stopRecording(true);
 
         } else if (ITestResult.SUCCESS == result.getStatus()) {
             ExtentReportImpl.passTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONPASS));
