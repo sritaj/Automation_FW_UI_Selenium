@@ -8,5 +8,6 @@
   "runmode": "remote",
   "browser": "chrome",
   "huburl": "http://localhost:4444/wd/hub",
-  "writetoekl": "yes"
+  "writetoekl": "yes",
+  "screenrecording": "no"
 }
