@@ -56,7 +56,7 @@ public final class FrameworkConstants {
      * @return String - Extent report path
      */
     public static String getExtentReportPath() {
-        if (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.OVERRIDEREPORTS).equalsIgnoreCase("yes")) {
+        if (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.OVERRIDEREPORTS).trim().equalsIgnoreCase("yes")) {
             return EXTENTREPORTPATH;
         }
         return EXTENTREPORTPATH + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")) + "/";

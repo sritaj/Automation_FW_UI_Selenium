@@ -22,7 +22,7 @@ public final class RetryAnalyzer implements IRetryAnalyzer {
      */
     @Override
     public boolean retry(ITestResult result) {
-        if ((PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RETRYFAILEDTEST).equalsIgnoreCase("yes"))
+        if ((PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RETRYFAILEDTEST).trim().equalsIgnoreCase("yes"))
                 && (retryCount < maxAttempt)) {
             retryCount++;
 

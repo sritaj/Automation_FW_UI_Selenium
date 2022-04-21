@@ -38,7 +38,7 @@ public final class EKLImpl {
      *
      */
     public static void clearPreviousELKResults() {
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).equalsIgnoreCase("yes")){
+        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).trim().equalsIgnoreCase("yes")){
             RequestSpecification specs = setRequestSpec();
             given(specs).delete();
         }
@@ -51,7 +51,7 @@ public final class EKLImpl {
      * @param status - Test Status
      */
     public static void sendResultsToELK(String testName, String status) {
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).equalsIgnoreCase("yes")){
+        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).trim().equalsIgnoreCase("yes")){
             Map<String, String> map = new HashMap<>();
             map.put("testName", testName);
             map.put("status", status);

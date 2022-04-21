@@ -31,8 +31,8 @@ public final class DriverFactory {
      */
     public static WebDriver getDriver() {
         WebDriver driver = null;
-        String runmode = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE);
-        String url = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.HUBURL);
+        String runmode = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE).trim();
+        String url = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.HUBURL).trim();
         String browser = null;
 
         //Checking if Browser is specified from Maven command, if not Browser to be picked from properties
@@ -41,7 +41,7 @@ public final class DriverFactory {
                     || PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.BROWSER).isEmpty()) {
                 browser = "chrome";
             } else {
-                browser = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.BROWSER);
+                browser = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.BROWSER).trim();
             }
         }else{
             browser = System.getProperty("BROWSER");

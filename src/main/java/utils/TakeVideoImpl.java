@@ -85,8 +85,8 @@ public class TakeVideoImpl extends ScreenRecorder {
      */
     public void startRecording(String fileName, boolean captureMouse) {
 
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENRECORDING).equalsIgnoreCase("yes")
-        && (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE).equalsIgnoreCase("local"))) {
+        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENRECORDING).trim().equalsIgnoreCase("yes")
+        && (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE).trim().equalsIgnoreCase("local"))) {
             this.fileName = fileName;
             try {
                 start();
@@ -105,8 +105,8 @@ public class TakeVideoImpl extends ScreenRecorder {
      * @keepFile - true/false for keeping the file
      */
     public void stopRecording(boolean keepFile) {
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENRECORDING).equalsIgnoreCase("yes")
-                && (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE).equalsIgnoreCase("local"))) {
+        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENRECORDING).trim().equalsIgnoreCase("yes")
+                && (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE).trim().equalsIgnoreCase("local"))) {
             try {
                 stop();
             } catch (IOException e) {

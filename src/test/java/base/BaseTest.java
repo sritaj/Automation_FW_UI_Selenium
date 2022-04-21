@@ -75,16 +75,16 @@ public class BaseTest {
         if (ITestResult.FAILURE == result.getStatus()) {
             RetryAnalyzer rerun = new RetryAnalyzer();
             rerun.retry(result);
-            ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL), result.getThrowable().getMessage(), result.getThrowable());
+            ExtentReportImpl.failTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONFAIL).trim(), result.getThrowable().getMessage(), result.getThrowable());
             EKLImpl.sendResultsToELK(result.getName(), "FAIL");
             captureVideo.stopRecording(true);
 
         } else if (ITestResult.SUCCESS == result.getStatus()) {
-            ExtentReportImpl.passTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONPASS));
+            ExtentReportImpl.passTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONPASS).trim());
             EKLImpl.sendResultsToELK(result.getName(), "PASS");
 
         } else if (ITestResult.SKIP == result.getStatus()) {
-            ExtentReportImpl.skipTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONSKIP));
+            ExtentReportImpl.skipTest(testName, PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENSHOTONSKIP).trim());
             EKLImpl.sendResultsToELK(result.getName(), "SKIP");
         }
         Driver.quitDriver();
