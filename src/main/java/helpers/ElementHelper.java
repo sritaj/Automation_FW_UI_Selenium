@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import reports.ExtentReportImpl;
+import utils.LoggerImpl;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public final class ElementHelper {
      */
     public void clickElement(By by, String elementInfo) {
         getElement(by).click();
-        ExtentReportImpl.logSteps("Element clicked : " + elementInfo);
+        LoggerImpl.logSteps("Element clicked : " + elementInfo);
     }
 
     /**
@@ -49,7 +50,7 @@ public final class ElementHelper {
      */
     public void clickElement(By by, WaitStrategy waitType, String elementInfo) {
         WaitHelper.performExplictiWait(waitType, by).click();
-        ExtentReportImpl.logSteps("Element clicked : " + elementInfo);
+        LoggerImpl.logSteps("Element clicked : " + elementInfo);
     }
 
     /**
@@ -60,7 +61,7 @@ public final class ElementHelper {
      * @return String - The title of the specified element
      */
     public String getTitle(By by, String elementInfo) {
-        ExtentReportImpl.logSteps("Get title for : " + elementInfo);
+        LoggerImpl.logSteps("Get title for : " + elementInfo);
         return driver.getTitle();
     }
 
@@ -72,7 +73,7 @@ public final class ElementHelper {
      * @return String - The title of the specified element
      */
     public String getText(By by, String elementInfo) {
-        ExtentReportImpl.logSteps("Get text for : " + elementInfo);
+        LoggerImpl.logSteps("Get text for : " + elementInfo);
         return getElement(by).getText();
     }
 
@@ -84,7 +85,7 @@ public final class ElementHelper {
      * @param input       - The user input as string for the specified element
      */
     public void sendKeys(By by, String input, String elementInfo) {
-        ExtentReportImpl.logSteps("Send input '" + input + "' to : " + elementInfo);
+        LoggerImpl.logSteps("Send input '" + input + "' to : " + elementInfo);
         getElement(by).sendKeys(input);
     }
 
