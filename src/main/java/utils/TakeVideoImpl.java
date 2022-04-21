@@ -92,6 +92,9 @@ public class TakeVideoImpl extends ScreenRecorder {
                 start();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NullPointerException e){
+                e.printStackTrace();
+                LoggerImpl.logSteps("Null Pointer Exception -> Please set 'screenrecording' property value to NO for parallel execution");
             }
         }
     }
