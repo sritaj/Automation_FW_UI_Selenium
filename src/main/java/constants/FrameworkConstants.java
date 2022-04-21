@@ -19,6 +19,7 @@ public final class FrameworkConstants {
     private static final int EXPLICITWAITTIMEOUT = 10;
     private static final String JSONCONFIGFILEPATH = RESOURCEPATH + "/src/test/resources/config/config.json";
     private static final String EXTENTREPORTPATH = RESOURCEPATH + "/test-reports/";
+    private static final String SCREENRECORDINGPATH = RESOURCEPATH + "/target/screen-records";
     private static final int RETRYCOUNTS = 2;
 
     /**
@@ -67,6 +68,15 @@ public final class FrameworkConstants {
      */
     public static int getRetryCounts() {
         return RETRYCOUNTS;
+    }
+
+    /**
+     * Method to get Screen Recording directory path
+     *
+     * @return String - Screen Recording directory path
+     */
+    public static String getScreenRecordingPath() {
+        return SCREENRECORDINGPATH;
     }
 
 }
