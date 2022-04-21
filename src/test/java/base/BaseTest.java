@@ -23,7 +23,7 @@ public class BaseTest {
     protected BaseTest() {
     }
 
-    TakeVideoImpl captureVideo;
+    private TakeVideoImpl captureVideo;
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(ITestContext context) {
