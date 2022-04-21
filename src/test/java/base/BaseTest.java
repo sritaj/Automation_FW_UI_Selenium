@@ -10,6 +10,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import reports.ExtentReportImpl;
 import utils.EKLImpl;
+import utils.LoggerImpl;
 import utils.PropertiesFileImpl;
 import utils.TakeVideoImpl;
 
@@ -57,7 +58,7 @@ public class BaseTest {
         String testDescription = method.getAnnotation(Test.class).testName();
         String testName = method.getName();
         ExtentReportImpl.startTestExecution(testDescription, testName);
-        ExtentReportImpl.logSteps(testName + " -> Execution starts");
+        LoggerImpl.startLog(testName);
 
         Driver.initDriver();
 
@@ -68,7 +69,7 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     protected void tearDown(ITestResult result, Method method) {
         String testName = result.getName();
-        ExtentReportImpl.logSteps(result.getName() + " -> Execution ended");
+        LoggerImpl.endLog(method.getName());
         ExtentReportImpl.addDetails(method);
 
         if (ITestResult.FAILURE == result.getStatus()) {
