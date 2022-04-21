@@ -20,6 +20,7 @@ public final class FrameworkConstants {
     private static final String JSONCONFIGFILEPATH = RESOURCEPATH + "/src/test/resources/config/config.json";
     private static final String EXTENTREPORTPATH = RESOURCEPATH + "/test-reports/";
     private static final String SCREENRECORDINGPATH = RESOURCEPATH + "/target/screen-records";
+    private static final String LOGSFOLDERPATH = RESOURCEPATH + "target/logs/";
     private static final int RETRYCOUNTS = 2;
 
     /**
@@ -77,6 +78,15 @@ public final class FrameworkConstants {
      */
     public static String getScreenRecordingPath() {
         return SCREENRECORDINGPATH;
+    }
+
+    /**
+     * Method to get Logs directory path
+     *
+     * @return String - Logs directory path
+     */
+    public static String getLogsFolderPath() {
+        return LOGSFOLDERPATH;
     }
 
 }
