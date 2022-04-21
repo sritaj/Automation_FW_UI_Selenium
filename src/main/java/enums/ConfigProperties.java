@@ -14,5 +14,6 @@ public enum ConfigProperties {
     RUNMODE,
     BROWSER,
     HUBURL,
-    WRITETOEKL
+    WRITETOEKL,
+    SCREENRECORDING
 }
