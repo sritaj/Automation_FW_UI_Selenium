@@ -9,5 +9,6 @@
   "browser": "chrome",
   "huburl": "http://localhost:4444/wd/hub",
   "writetoekl": "yes",
-  "screenrecording": "no"
+  "screenrecording": "no",
+  "log4jloggingrequired": "yes"
 }
