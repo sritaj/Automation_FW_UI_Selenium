@@ -35,8 +35,9 @@ UI Automation Hybrid Framework with ***Selenium WebDriver*** and ***TestNG*** in
 3. Data Parameterization examples/Parametrized Tests run using Excel
 4. Jenkinsfile -> for creating and pushing Image to Docker repository
 
-## Known Caveats
+## Known Caveats/Limitations
 1. **mvn test** command won't work due to surefire plugin which requires testNG xml suite to be selected, will throw this error ***Execution default-test of goal org.apache.maven.plugins:maven-surefire-plugin:2.22.2:test failed: testSuiteXmlFiles0 has null value***
+2. Screen recording using Monte library won't work in parallel run
 
 ## Instructions
 ### Building Docker Image
@@ -65,6 +66,13 @@ UI Automation Hybrid Framework with ***Selenium WebDriver*** and ***TestNG*** in
     * Go to Analytics > Dashboard > Create Dashboard for the above created Data View
 5. To bring down the Docker Setup ***docker-compose -f docker-compose-eklsetup.yaml down***
 
+### Monte Screen Recorder Library for recording Test Run Videos
+1. Set the **screenrecording** value to yes in properties file to record the video for tests(method added only for failed Tests)
+
+### Log4J Logging
+1. Set the **log4jloggingrequired** value to yes in properties file to write logs to file(per Test one respective file) and to display in the console
+
+***Please check the config.properties file under test/resources for further info on various keys set in the framework***
 
 ## Common Troubleshoot
 
