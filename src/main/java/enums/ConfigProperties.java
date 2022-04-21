@@ -15,5 +15,6 @@ public enum ConfigProperties {
     BROWSER,
     HUBURL,
     WRITETOEKL,
-    SCREENRECORDING
+    SCREENRECORDING,
+    LOG4JLOGGINGREQUIRED
 }
