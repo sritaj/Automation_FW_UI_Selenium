@@ -5,7 +5,6 @@ import enums.WaitStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import reports.ExtentReportImpl;
 import utils.LoggerImpl;
 
 import java.util.List;

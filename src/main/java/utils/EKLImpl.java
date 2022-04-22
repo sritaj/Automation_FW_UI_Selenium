@@ -35,10 +35,9 @@ public final class EKLImpl {
 
     /**
      * Method to delete the Regression Collection
-     *
      */
     public static void clearPreviousELKResults() {
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).trim().equalsIgnoreCase("yes")){
+        if (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).trim().equalsIgnoreCase("yes")) {
             RequestSpecification specs = setRequestSpec();
             given(specs).delete();
         }
@@ -48,10 +47,10 @@ public final class EKLImpl {
      * Method to set test run data to Regression Collection
      *
      * @param testName - Test/Method name
-     * @param status - Test Status
+     * @param status   - Test Status
      */
     public static void sendResultsToELK(String testName, String status) {
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).trim().equalsIgnoreCase("yes")){
+        if (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.WRITETOEKL).trim().equalsIgnoreCase("yes")) {
             Map<String, String> map = new HashMap<>();
             map.put("testName", testName);
             map.put("status", status);

@@ -15,7 +15,7 @@ public class ExtentReportManager {
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     static void setTest(ExtentTest testRef) {
-        if(Objects.nonNull(testRef))
+        if (Objects.nonNull(testRef))
             test.set(testRef);
     }
 

@@ -13,12 +13,13 @@ import utils.StringDecodeImpl;
 
 public final class OrangeHRMLoginPageTest extends BaseTest {
 
-    private OrangeHRMLoginPageTest(){}
+    private OrangeHRMLoginPageTest() {
+    }
 
     private final String adminPassword = StringDecodeImpl.stringDecode("YWRtaW4xMjM=");
 
     @DataProvider
-    public Object[][] getUsernameAndPassword(){
+    public Object[][] getUsernameAndPassword() {
         Faker fs = new Faker();
         return new Object[][]{
                 {fs.name().firstName(), fs.internet().password()},
@@ -29,7 +30,7 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
 
     @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION, testCaseModule = "Login")
     @Test(testName = "Validate login to the OrangeHRM", groups = {"regression"})
-    public void validateLogin(){
+    public void validateLogin() {
         String welcomeText = new OrangeHRMLoginPage().loginToHRMPortal("Admin", adminPassword).getWelcomeMessage();
         Assertions.assertThat(welcomeText)
                 .containsIgnoringCase("welcome");
@@ -38,7 +39,7 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
 
     @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E, testCaseModule = "Login")
     @Test(testName = "Valdate login-logout operation in the OrangeHRM", groups = {"regression"})
-    public void validateLoginLogoutOperation(){
+    public void validateLoginLogoutOperation() {
         new OrangeHRMLoginPage().loginToHRMPortal("Admin   ", adminPassword).getWelcomeMessage();
 
         String loginPageTitle = new OrangeHRMHomePage().logout().getLoginPageTitle();
@@ -50,14 +51,14 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
 
     @CustomFrameworkAnnotations(testCaseType = TestCaseType.FUNCTIONAL, testCaseModule = "Login")
     @Test(testName = "Validate login with invalid credentials", dataProvider = "getUsernameAndPassword", groups = {"regression"})
-    public void validateLoginWithInvalidCredentials(String username, String pwd){
+    public void validateLoginWithInvalidCredentials(String username, String pwd) {
         new OrangeHRMLoginPage().loginToHRMPortal(username, pwd);
-        Boolean errorMessageIsDisplayed  = new OrangeHRMLoginPage().checkInvalidCredentialsErrorMessage();
+        Boolean errorMessageIsDisplayed = new OrangeHRMLoginPage().checkInvalidCredentialsErrorMessage();
         Assertions.assertThat(errorMessageIsDisplayed)
                 .isTrue();
 
-        String actualErrorMessage =  new OrangeHRMLoginPage().getInvalidCredentialsErrorMessage();
-                Assertions.assertThat(actualErrorMessage)
+        String actualErrorMessage = new OrangeHRMLoginPage().getInvalidCredentialsErrorMessage();
+        Assertions.assertThat(actualErrorMessage)
                 .containsIgnoringCase("Invalid credentials");
     }
 

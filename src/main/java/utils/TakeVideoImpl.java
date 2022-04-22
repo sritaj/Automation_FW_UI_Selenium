@@ -56,8 +56,8 @@ public class TakeVideoImpl extends ScreenRecorder {
     /**
      * Method to get File with unique name
      *
-     * @fileName - The name of the file
      * @return File with filename
+     * @fileName - The name of the file
      */
     private File getFileWithUniqueName(String fileName) {
         String extension = "";
@@ -69,7 +69,7 @@ public class TakeVideoImpl extends ScreenRecorder {
 
         Path path = Paths.get(fileName);
         int counter = 1;
-        while(Files.exists(path)){
+        while (Files.exists(path)) {
             fileName = name + "-" + counter + "." + extension;
             path = Paths.get(fileName);
             counter++;
@@ -85,14 +85,14 @@ public class TakeVideoImpl extends ScreenRecorder {
      */
     public void startRecording(String fileName, boolean captureMouse) {
 
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENRECORDING).trim().equalsIgnoreCase("yes")
-        && (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE).trim().equalsIgnoreCase("local"))) {
+        if (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENRECORDING).trim().equalsIgnoreCase("yes")
+                && (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE).trim().equalsIgnoreCase("local"))) {
             this.fileName = fileName;
             try {
                 start();
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 e.printStackTrace();
                 LoggerImpl.logSteps("Null Pointer Exception -> Please set 'screenrecording' property value to NO for parallel execution");
             }
@@ -105,7 +105,7 @@ public class TakeVideoImpl extends ScreenRecorder {
      * @keepFile - true/false for keeping the file
      */
     public void stopRecording(boolean keepFile) {
-        if(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENRECORDING).trim().equalsIgnoreCase("yes")
+        if (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.SCREENRECORDING).trim().equalsIgnoreCase("yes")
                 && (PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.RUNMODE).trim().equalsIgnoreCase("local"))) {
             try {
                 stop();
@@ -120,15 +120,14 @@ public class TakeVideoImpl extends ScreenRecorder {
 
     /**
      * Method to delete the recording
-     *
      */
     private void deleteRecording() {
         boolean deleted = false;
-        try{
+        try {
             if (currentFile.exists()) {
                 deleted = currentFile.delete();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

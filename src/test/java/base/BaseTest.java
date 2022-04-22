@@ -33,7 +33,7 @@ public class BaseTest {
         ExtentReportImpl.initializeReport();
 
         //Initializing Tests with Retry Analyzer Annotation
-        for(ITestNGMethod method : context.getAllTestMethods()){
+        for (ITestNGMethod method : context.getAllTestMethods()) {
             method.setRetryAnalyzerClass(RetryAnalyzer.class);
         }
 

@@ -43,10 +43,10 @@ public final class ExtentReportImpl {
             extent.setSystemInfo("OS", System.getProperty("os.name"));
             extent.setSystemInfo("OS Version", System.getProperty("os.version"));
             extent.setSystemInfo("Java Version", System.getProperty("java.runtime.version"));
-            if(System.getProperty("BROWSER")==null){
+            if (System.getProperty("BROWSER") == null) {
                 extent.setSystemInfo("Browser", PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.BROWSER).trim());
-            }else{
-                extent.setSystemInfo("Browser",System.getProperty("BROWSER"));
+            } else {
+                extent.setSystemInfo("Browser", System.getProperty("BROWSER"));
             }
 
         }

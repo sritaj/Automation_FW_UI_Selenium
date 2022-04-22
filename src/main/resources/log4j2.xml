@@ -2,16 +2,17 @@
 <Configuration status="INFO">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n" />
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n"/>
         </Console>
         <Routing name="RoutingAppender">
             <Routes pattern="$${ctx:logFilename}">
                 <Route>
                     <RollingFile name="Rolling-${ctx:logFilename}"
-                                 fileName="target/logs/${ctx:logFilename}.log" filePattern="target/logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
+                                 fileName="target/logs/${ctx:logFilename}.log"
+                                 filePattern="target/logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
                                  append="false">
-                        <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n" />
-                        <SizeBasedTriggeringPolicy size="10 MB" />
+                        <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n"/>
+                        <SizeBasedTriggeringPolicy size="10 MB"/>
                     </RollingFile>
                 </Route>
             </Routes>
@@ -19,8 +20,8 @@
     </Appenders>
     <Loggers>
         <Root level="info">
-            <AppenderRef ref="RoutingAppender" />
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="RoutingAppender"/>
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>

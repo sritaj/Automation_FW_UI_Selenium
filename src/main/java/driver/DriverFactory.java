@@ -43,7 +43,7 @@ public final class DriverFactory {
             } else {
                 browser = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.BROWSER).trim();
             }
-        }else{
+        } else {
             browser = System.getProperty("BROWSER");
         }
 
