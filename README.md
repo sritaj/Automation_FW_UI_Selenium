@@ -93,7 +93,8 @@ Azure Devops CI/CD*** Pipeline and relevant dependencies.
 5. To bring down the Docker Setup ***docker-compose -f docker-compose-eklsetup.yaml down***
 
 **Sample EKS Dashboard**
-![](test-img/EKSDashboard.png)
+
+<img src="https://github.com/sritaj/Selenium_UIAutomation/blob/master/test-img/ESKDashboard.png" alt="Selenium UI Automation" style="height: 350px; width:800px;"/>
 
 ### Monte Screen Recorder Library for recording Test Run Videos
 
