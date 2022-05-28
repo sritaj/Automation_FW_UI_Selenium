@@ -2,9 +2,9 @@
 
 # Selenium UIAutomation Framework
 
-UI Automation Hybrid Framework with ***Selenium WebDriver*** and ***TestNG*** integration, ***Extent Reports***, ***
-Faker Library***, ***Docker Setup*** for ***Selenium Grid***, ***Elasticsearch & Kibana*** for Live Tests Reports, ***
-Azure Devops CI/CD*** Pipeline and relevant dependencies.
+UI Automation Hybrid Framework with ***Selenium WebDriver*** and ***TestNG*** integration, ***Extent Reports***,
+***Faker Library***, ***Docker Setup*** for ***Selenium Grid***, ***Elasticsearch & Kibana*** for Live Tests Reports, 
+***Azure Devops CI/CD*** Pipeline and relevant dependencies.
 
 ## Tech Stack
 
@@ -94,7 +94,7 @@ Azure Devops CI/CD*** Pipeline and relevant dependencies.
 
 **Sample EKS Dashboard**
 
-<img src="https://github.com/sritaj/Selenium_UIAutomation/blob/master/test-img/ESKDashboard.png" alt="Selenium UI Automation" style="height: 350px; width:800px;"/>
+<img src="https://github.com/sritaj/Selenium_UIAutomation/blob/master/test-img/ESKDashboard.png" alt="EKS Dashboard" style="height: 350px; width:800px;"/>
 
 ### Monte Screen Recorder Library for recording Test Run Videos
 
@@ -129,3 +129,9 @@ Azure Devops CI/CD*** Pipeline and relevant dependencies.
    from the local system
 2. The Create Data View is not listing any Collection/Document -> Sample Collection and Document needs to be created
    using POSTMAN/Curl commands
+
+## Special Thanks
+Special Thanks to Instructors who have done a splendid job on explaining and designing the framework  
+- [TestingMiniBytes](https://www.testingminibytes.com/courses/design-advanced-selenium-automation-framework-with-real-time-dashboard/introduction)
+- [TestingMiniBytes - YouTube](https://www.youtube.com/c/TestingMiniBytes)
+- And many more sources from which I learnt trouble-shooting points via YouTube, StackOverFlow, Articles, etc
