@@ -62,6 +62,7 @@ public final class DriverFactory {
 
             } else {
                 ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*");
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver(chromeOptions);
             }
