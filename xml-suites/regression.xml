@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="regression" thread-count="3" verbose="1" parallel="methods">
+<suite name="regression" thread-count="5" verbose="1" parallel="methods">
+<!--<suite name="regression" verbose="1">-->
     <test name="regression">
         <groups>
             <run>
