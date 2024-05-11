@@ -11,7 +11,7 @@
     3. test on single mode remote ✔
     4. test on parallel remote ✔
     5. test on single mode local ✔
-    6. test on parallel mode local 
+    6. test on parallel mode local ✔
 
 # TO RUN
 
