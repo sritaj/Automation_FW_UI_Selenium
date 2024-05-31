@@ -8,8 +8,8 @@ import org.openqa.selenium.By;
  */
 public final class OrangeHRMHomePage extends BasePage {
 
-    private final By dashboardMenuOption = By.id("menu_dashboard_index");
-    private final By welcomeSection = By.id("welcome");
+    private final By dashboardMenuOption = By.xpath("//*[contains(@class, 'userdropdown-tab')]");
+    private final By userAreaSection = By.xpath("//*[contains(@class, 'userdropdown-icon')]");
     private final By logout = By.xpath("//a[text()='Logout']");
 
     /**
@@ -26,15 +26,15 @@ public final class OrangeHRMHomePage extends BasePage {
      *
      * @return String - The msg as String
      */
-    public String getWelcomeMessage() {
-        return elementHelper.getText(welcomeSection, "Welcome Msg");
+    public Boolean getIsUserAreaVisible() {
+        return elementHelper.elementIsDisplayed(userAreaSection, WaitStrategy.VISIBILITY);
     }
 
     /**
      * Method to logout from the Application
      */
     public OrangeHRMLoginPage logout() {
-        elementHelper.clickElement(welcomeSection, "Welcome Section");
+        elementHelper.clickElement(userAreaSection, WaitStrategy.CLICKABLE, "User area section");
         elementHelper.clickElement(logout, WaitStrategy.CLICKABLE, "Logout Button");
         return new OrangeHRMLoginPage();
     }

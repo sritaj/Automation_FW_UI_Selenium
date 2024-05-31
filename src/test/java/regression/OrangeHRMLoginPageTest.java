@@ -31,21 +31,20 @@ public final class OrangeHRMLoginPageTest extends BaseTest {
     @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION, testCaseModule = "Login")
     @Test(testName = "Validate login to the OrangeHRM", groups = {"regression"})
     public void validateLogin() {
-        String welcomeText = new OrangeHRMLoginPage().loginToHRMPortal("Admin", adminPassword).getWelcomeMessage();
-        Assertions.assertThat(welcomeText)
-                .containsIgnoringCase("welcome");
-
+        Boolean isUserAreaVisible = new OrangeHRMLoginPage().loginToHRMPortal("Admin", adminPassword).getIsUserAreaVisible();
+        Assertions.assertThat(isUserAreaVisible)
+                .isTrue();
     }
 
     @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E, testCaseModule = "Login")
-    @Test(testName = "Valdate login-logout operation in the OrangeHRM", groups = {"regression"})
+    @Test(testName = "Validate login-logout operation in the OrangeHRM", groups = {"regression"})
     public void validateLoginLogoutOperation() {
-        new OrangeHRMLoginPage().loginToHRMPortal("Admin   ", adminPassword).getWelcomeMessage();
+        new OrangeHRMLoginPage().loginToHRMPortal("Admin   ", adminPassword);
 
         String loginPageTitle = new OrangeHRMHomePage().logout().getLoginPageTitle();
         Assertions.assertThat(loginPageTitle)
                 .as("Object is Null").isNotNull()
-                .as("It doesn't contain expected text").containsIgnoringCase("LOGIN Panel");
+                .as("It doesn't contain expected text").containsIgnoringCase("OrangeHRM");
 
     }
 
