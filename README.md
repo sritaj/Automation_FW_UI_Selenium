@@ -1,4 +1,4 @@
-<img src="https://binmile.com/wp-content/uploads/2021/03/selenium-automation-testing.jpg" alt="Selenium UI Automation" style="height: 350px; width:700px;"/>
+<img src="https://autify.com/wp-content/uploads/2022/07/selen.png" alt="Selenium UI Automation" style="height: 350px; width:700px;"/>
 
 # Selenium UIAutomation Framework
 
