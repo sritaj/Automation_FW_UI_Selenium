@@ -1,5 +1,6 @@
 package pages;
 
+import enums.WaitStrategy;
 import org.openqa.selenium.By;
 
 /**
@@ -11,11 +12,11 @@ public final class OrangeHRMLoginPage extends BasePage {
         super();
     }
 
-    private final By usernameTxtBox = By.id("txtUsername");
-    private final By passwordTxtBox = By.id("txtPassword");
-    private final By loginButton = By.id("btnLogin");
+    private final By usernameTxtBox = By.name("username");
+    private final By passwordTxtBox = By.name("password");
+    private final By loginButton = By.xpath("//*[@type='submit']");
     private final By loginPageTitle = By.id("logInPanelHeading");
-    private final By invalidCredentials = By.id("spanMessage");
+    private final By invalidCredentials = By.cssSelector("[role='alert']");
 
     /**
      * Method to login to the Application
@@ -24,7 +25,7 @@ public final class OrangeHRMLoginPage extends BasePage {
      * @param password - password as string
      */
     public OrangeHRMHomePage loginToHRMPortal(String username, String password) {
-        elementHelper.sendKeys(usernameTxtBox, username, "username");
+        elementHelper.sendKeys(usernameTxtBox, WaitStrategy.CLICKABLE, username, "username");
         elementHelper.sendKeys(passwordTxtBox, password, "password");
         elementHelper.clickElement(loginButton, "Login Button");
         return new OrangeHRMHomePage();
@@ -54,7 +55,7 @@ public final class OrangeHRMLoginPage extends BasePage {
      * @return boolean - True/False based on the Element
      */
     public boolean checkInvalidCredentialsErrorMessage() {
-        return elementHelper.elementIsDisplayed(invalidCredentials);
+        return elementHelper.elementIsDisplayed(invalidCredentials, WaitStrategy.VISIBILITY);
     }
 
 }
